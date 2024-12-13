@@ -7,10 +7,10 @@ public class MenuService(IContactService contactService) : IMenuService
 {
 
     private readonly IContactService _contactService = contactService;
+    bool running = true;
 
     public void MainMenu()
     {
-        bool running = true;
 
         do
         {
@@ -41,7 +41,6 @@ public class MenuService(IContactService contactService) : IMenuService
                     break;
                 case "5":
                     Exit();
-                    running = false;
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
@@ -100,7 +99,10 @@ public class MenuService(IContactService contactService) : IMenuService
 
     public void DeleteContact()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Enter the ID of the contact you want to delete: ");
+        var id = Console.ReadLine();
+        
+        
     }
     public void UpdateContact()
     {
@@ -113,7 +115,7 @@ public class MenuService(IContactService contactService) : IMenuService
         var choice = Console.ReadLine()!.ToLower();
         if (choice == "y")
         {
-            Environment.Exit(0);
+            running = false;
         }
     }
 
