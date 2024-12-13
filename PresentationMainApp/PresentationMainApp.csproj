@@ -8,11 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Business\Business.csproj" />
+    <Compile Remove="Dialogs\**" />
+    <EmbeddedResource Remove="Dialogs\**" />
+    <None Remove="Dialogs\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dialogs\" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj" />
   </ItemGroup>
 
 </Project>
