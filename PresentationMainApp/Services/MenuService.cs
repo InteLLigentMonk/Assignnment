@@ -102,7 +102,6 @@ public class MenuService(IContactService contactService) : IMenuService
         Console.WriteLine("Enter the ID of the contact you want to delete: ");
         var id = Console.ReadLine();
         
-        
     }
     public void UpdateContact()
     {
