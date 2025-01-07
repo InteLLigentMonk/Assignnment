@@ -26,8 +26,9 @@ public class ContactService(IFileService fileService) : IContactService
         throw new NotImplementedException();
     }
 
-    public void DeleteContact(ContactRegForm contact)
+    public void DeleteContact(string Id)
     {
-        throw new NotImplementedException();
+        _contacts.Remove(_contacts.FirstOrDefault(c => c.Id == Id)!);
+        _fileService.Save(_contacts);
     }
 }
