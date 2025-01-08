@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             
+             xmlns:model="clr-namespace:Business.Models;assembly=Business"
+             xmlns:vm="clr-namespace:Assignment.Maui.ViewModels"
+             
+             x:DataType="vm:AddContactViewModel"
+             x:Class="Assignment.Maui.MainPage">
+
+    <ScrollView>
+        <Grid RowDefinitions="auto,*">
+            <VerticalStackLayout
+                Grid.Row="0"
+                Padding="30,0"
+                Spacing="25">
+                <Image
+                    Source="contacts.png"
+                    HeightRequest="185"
+                    WidthRequest="185"
+                    SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+
+                <Label
+                    Text="Contacts"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level1" />
+            </VerticalStackLayout>
+            <CollectionView
+                Grid.Row="1"
+                ItemsSource="{Binding ContactRegForm}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ContactRegForm">
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                Grid.Column="1"
+                                Spacing="5"
+                                VerticalOptions="Center">
+                                <Label
+                                    Text="{Binding FirstName}"
+                                    Style="{StaticResource ListItemTextStyle}"
+                                    LineBreakMode="NoWrap"
+                                    MaxLines="1" />
+                                <Label
+                                    Text="{Binding LastName}"
+                                    Style="{StaticResource ListItemDetailTextStyle}"
+                                    LineBreakMode="NoWrap"
+                                    MaxLines="1" />
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
