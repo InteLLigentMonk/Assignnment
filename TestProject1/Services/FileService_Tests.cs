@@ -1,4 +1,4 @@
-﻿//This file has been improved with the help of GitHub Copilot
+﻿//Denna filen har förbättrats med hjälp av Github Copilot.
 
 using System.Text.Json;
 using Business.Models;
