@@ -1,4 +1,5 @@
-﻿using Assignment.Maui.ViewModels;
+﻿using Assignment.Maui.Pages;
+using Assignment.Maui.ViewModels;
 using Business.Interface;
 using Business.Services;
 using Microsoft.Extensions.Logging;
@@ -19,7 +20,14 @@ namespace Assignment.Maui
                 });
 
             builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddSingleton<MainPage>();
+
             builder.Services.AddSingleton<AddContactViewModel>();
+            builder.Services.AddSingleton<AddContactPage>();
+
+            builder.Services.AddSingleton<EditContactViewModel>();
+            builder.Services.AddSingleton<EditContactPage>();
+
             builder.Services.AddSingleton<IFileService, FileService>();
             builder.Services.AddSingleton<IContactService, ContactService>();
 

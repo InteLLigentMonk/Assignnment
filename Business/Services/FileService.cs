@@ -11,7 +11,7 @@ public class FileService : IFileService
     private readonly string _filePath;
     private readonly JsonSerializerOptions _jsonSerializerOptions;
 
-    public FileService(string fileName = "contactlist.json", string directoryPath = "Data")
+    public FileService(string fileName = "contactlist.json", string directoryPath = "C:\\Users\\Tobias\\source\\repos\\Assignnment\\Data")
     {
         _directoryPath = directoryPath;
         _filePath = Path.Combine(_directoryPath, fileName);

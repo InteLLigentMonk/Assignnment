@@ -4,17 +4,23 @@
              xmlns:vm="clr-namespace:Assignment.Maui.ViewModels"
              xmlns:model="clr-namespace:Business.Models;assembly=Business"
              
-             x:DataType="vm:AddContactViewModel"
-             x:Class="Assignment.Maui.Pages.AddContactPage"
-             Title="Add New Contact">
+             x:DataType="vm:EditContactViewModel"
+             x:Class="Assignment.Maui.Pages.EditContactPage"
+             Title="Edit Contact">
     <VerticalStackLayout
         Padding="20"
         Spacing="5">
         <Label 
-            Text="Add New Contact"
+            Text="Edit Contact"
             VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            Margin="0,0,20,0"/>
+            HorizontalOptions="Center" />
+        <Label>
+            <Label.Text>
+                <MultiBinding StringFormat="Id: {0}">
+                    <Binding Path="Contact.Id" />
+                </MultiBinding>
+            </Label.Text>
+        </Label>
 
         <Label 
             Text="First Name" />
@@ -60,7 +66,7 @@
 
         <Button
             Text="Save"
-            Command="{Binding SaveContactCommand}" />
+            Command="{Binding SaveContactCommand }" />
         <Button
             Text="Cancel"
             Command="{Binding CancelCommand}" />

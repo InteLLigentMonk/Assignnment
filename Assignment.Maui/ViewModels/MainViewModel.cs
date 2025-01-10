@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using Assignment.Maui.Pages;
 using Business.Interface;
 using Business.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Assignment.Maui.ViewModels;
 
@@ -15,7 +17,45 @@ public partial class MainViewModel : ObservableObject
     public MainViewModel(IContactService contactService)
     {
         _contactService = contactService;
-        _contacts = new ObservableCollection<ContactRegForm>(_contactService.ReadContacts());
+        Contacts = ReformatContacts();
+        _contactService.ContactsChanged += (s, e) => Contacts = ReformatContacts();
+    }
+
+    [RelayCommand]
+    async Task AddContact() => await Shell.Current.GoToAsync(nameof(AddContactPage));
+
+    [RelayCommand]
+    public void DeleteContact(ContactRegForm contact)
+    {
+        if (contact != null)
+        {
+            _contactService.DeleteContact(contact.Id);
+            Contacts = ReformatContacts();
+        }
+    }
+
+    [RelayCommand]
+    async Task EditContact(ContactRegForm contact)
+    {
+        var parameters = new ShellNavigationQueryParameters
+        {
+            { "Contact", contact }
+        };
+
+        await Shell.Current.GoToAsync(nameof(EditContactPage), parameters);
+    }
+
+    private ObservableCollection<ContactRegForm> ReformatContacts()
+    {
+        var oldList = _contactService.ReadContacts();
+        ObservableCollection<ContactRegForm> newList = [];
+
+        foreach (ContactRegForm contact in oldList)
+        {
+            newList.Add(contact);
+        }
+        return newList;
+
     }
 
 }

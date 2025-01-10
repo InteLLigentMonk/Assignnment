@@ -5,11 +5,13 @@
              xmlns:model="clr-namespace:Business.Models;assembly=Business"
              xmlns:vm="clr-namespace:Assignment.Maui.ViewModels"
              
-             x:DataType="vm:AddContactViewModel"
+             x:DataType="vm:MainViewModel"
              x:Class="Assignment.Maui.MainPage">
 
     <ScrollView>
-        <Grid RowDefinitions="auto,*">
+        <Grid RowDefinitions="auto,auto"
+              Padding="15"
+              RowSpacing="15">
             <VerticalStackLayout
                 Grid.Row="0"
                 Padding="30,0"
@@ -18,39 +20,60 @@
                     Source="contacts.png"
                     HeightRequest="185"
                     WidthRequest="185"
-                    SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+                    SemanticProperties.Description="Contact app logo" />
 
                 <Label
                     Text="Contacts"
                     Style="{StaticResource Headline}"
                     SemanticProperties.HeadingLevel="Level1" />
+                <Button
+                    Text="Add New Contact"
+                    Command="{Binding AddContactCommand}" />
             </VerticalStackLayout>
             <CollectionView
-                Grid.Row="1"
-                ItemsSource="{Binding ContactRegForm}">
+                Margin="0,0,0,5"
+                ItemsSource="{Binding Contacts}"
+                Grid.Row="1">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:ContactRegForm">
-                        <Grid Padding="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <StackLayout
-                                Grid.Column="1"
-                                Spacing="5"
-                                VerticalOptions="Center">
-                                <Label
-                                    Text="{Binding FirstName}"
-                                    Style="{StaticResource ListItemTextStyle}"
-                                    LineBreakMode="NoWrap"
-                                    MaxLines="1" />
-                                <Label
-                                    Text="{Binding LastName}"
-                                    Style="{StaticResource ListItemDetailTextStyle}"
-                                    LineBreakMode="NoWrap"
-                                    MaxLines="1" />
-                            </StackLayout>
-                        </Grid>
+                        <Border
+                            BackgroundColor="Transparent"
+                            Stroke="Silver"
+                            StrokeThickness="0.3"
+                            StrokeShape="RoundRectangle 10">
+                            <Grid 
+                                ColumnDefinitions="*,auto,auto"
+                                Margin="5"
+                                ColumnSpacing="5">
+                                <StackLayout
+                                    VerticalOptions="CenterAndExpand"
+                                    Margin="10,0,0,0"
+                                Grid.Column="0">
+                                    <Label 
+                                        FontSize="14">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="Name: {0} {1}">
+                                                <Binding Path="FirstName" />
+                                                <Binding Path="LastName" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </StackLayout>
+                                <Button
+                                    Grid.Column="1"
+                                    Text="Edit"
+                                    CommandParameter="{Binding .}"
+                                    Command="{Binding Path=EditContactCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}"/>
+                                <Button
+                                    Grid.Column="2"
+                                    Text="Delete"
+                                    CommandParameter="{Binding .}"
+                                    Command="{Binding Path=DeleteContactCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}"/>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

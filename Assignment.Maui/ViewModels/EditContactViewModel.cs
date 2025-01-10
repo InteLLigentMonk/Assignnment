@@ -1,28 +1,32 @@
-﻿using Business.Factories;
-using Business.Interface;
+﻿using Business.Interface;
 using Business.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace Assignment.Maui.ViewModels;
 
-public partial class AddContactViewModel : ObservableObject
-{
-    private readonly IContactService _contactService;
-    
-    [ObservableProperty]
-    private ContactRegForm _contact;
 
-    public AddContactViewModel(IContactService contactService)
+public partial class EditContactViewModel : ObservableObject, IQueryAttributable
+{
+    IContactService _contactService;
+
+    [ObservableProperty]
+    ContactRegForm? contact;
+
+    public EditContactViewModel(IContactService contactService)
     {
         _contactService = contactService;
-        Contact = ContactFactory.CreateContact();
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        Contact = (query["Contact"] as ContactRegForm)!;
     }
 
     [RelayCommand]
     async Task SaveContact()
     {
-        _contactService.CreateContact(Contact);
+        _contactService.UpdateContact(Contact);
         Contact = new ContactRegForm();
         await Shell.Current.GoToAsync($"//{nameof(MainPage)}");
 
@@ -33,5 +37,4 @@ public partial class AddContactViewModel : ObservableObject
     {
         await Shell.Current.GoToAsync("..");
     }
-
 }
