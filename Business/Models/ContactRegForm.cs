@@ -1,6 +1,8 @@
-﻿namespace Business.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class ContactRegForm
+namespace Business.Models;
+
+public partial class ContactRegForm : ObservableObject
 {
     public string Id { get; set; } = null!;
 
@@ -18,5 +20,12 @@ public class ContactRegForm
 
     public string City { get; set; } = null!;
 
+    public string Name => $"{FirstName} {LastName}";
 
+    public string Address => $"{ZipCode}, {City}";
+
+    public string Initials => $"{FirstName[0]}{LastName[0]}";
+
+    [ObservableProperty]
+    private bool _isExpanded;
 }

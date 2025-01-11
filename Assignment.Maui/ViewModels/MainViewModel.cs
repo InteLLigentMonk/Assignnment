@@ -14,11 +14,13 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<ContactRegForm> _contacts = [];
 
+
     public MainViewModel(IContactService contactService)
     {
         _contactService = contactService;
         Contacts = ReformatContacts();
         _contactService.ContactsChanged += (s, e) => Contacts = ReformatContacts();
+
     }
 
     [RelayCommand]
@@ -45,6 +47,15 @@ public partial class MainViewModel : ObservableObject
         await Shell.Current.GoToAsync(nameof(EditContactPage), parameters);
     }
 
+    [RelayCommand]
+    public void ToggleExpand(ContactRegForm contact)
+    {
+        if (contact != null)
+        {
+            contact.IsExpanded = !contact.IsExpanded;
+        }
+    }
+
     private ObservableCollection<ContactRegForm> ReformatContacts()
     {
         var oldList = _contactService.ReadContacts();
@@ -57,5 +68,6 @@ public partial class MainViewModel : ObservableObject
         return newList;
 
     }
+
 
 }

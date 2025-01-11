@@ -1,42 +1,12 @@
 [
   {
-    "Id": "0efdf583-3642-49e1-8456-3291fe02b9d4",
-    "FirstName": "Emil",
-    "LastName": "Begovic",
-    "Email": "Emil.Bajs@live.se",
-    "Phone": "072555336",
-    "Street": "Kalmargata 8",
-    "ZipCode": "45654",
-    "City": "Kalmar"
-  },
-  {
-    "Id": "975471da-bb6c-4d71-bffb-4667a537e3ec",
-    "FirstName": "Uffe",
-    "LastName": "Gudmundsson",
-    "Email": "Uffe.G@gmail.com",
-    "Phone": "0768856995",
-    "Street": "\u00F6jn-gatan 8",
-    "ZipCode": "55552",
-    "City": "Visby"
-  },
-  {
-    "Id": "d036c610-b9ae-4a84-a648-347c3d2735ea",
-    "FirstName": "Lisa",
-    "LastName": "Hugoh",
-    "Email": "Lh@live.se",
-    "Phone": "07557588",
-    "Street": "Hallgtan 8",
-    "ZipCode": "31456",
+    "Id": "a8ce5289-3fc4-473a-97a5-ee00a7c84049",
+    "FirstName": "Tobias",
+    "LastName": "Vinther",
+    "Email": "Tobias.Vinther88@gmail.com",
+    "Phone": "0735572039",
+    "Street": "Hallgatan 8",
+    "ZipCode": "31245",
     "City": "Veinge"
-  },
-  {
-    "Id": "5dd23df2-e71e-4d3b-be57-6821542e7ed2",
-    "FirstName": "Ed",
-    "LastName": "Burger",
-    "Email": "Ed.B@live.se",
-    "Phone": "0755774458",
-    "Street": "GlitterTown",
-    "ZipCode": "222222",
-    "City": "Homestead"
   }
 ]

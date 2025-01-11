@@ -18,7 +18,7 @@ public class MenuService(IContactService contactService) : IMenuService
             Console.WriteLine("*-------- Main Menu --------*");
             Console.WriteLine("1. Show Contacts");
             Console.WriteLine("2. Add Contact");
-            Console.WriteLine("3. Update Contact");
+            Console.WriteLine("3. Update Contact (Not Implemented)");
             Console.WriteLine("4. Delete Contact");
             Console.WriteLine("5. Exit");
             Console.WriteLine("*---------------------------*");
@@ -34,7 +34,6 @@ public class MenuService(IContactService contactService) : IMenuService
                     AddContact();
                     break;
                 case "3":
-                    UpdateContact();
                     break;
                 case "4":
                     DeleteContact();

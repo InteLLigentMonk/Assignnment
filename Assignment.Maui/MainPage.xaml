@@ -44,32 +44,55 @@
                             Stroke="Silver"
                             StrokeThickness="0.3"
                             StrokeShape="RoundRectangle 10">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=ToggleExpandCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}" CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
                             <Grid 
                                 ColumnDefinitions="*,auto,auto"
                                 Margin="5"
                                 ColumnSpacing="5">
-                                <StackLayout
+                                <HorizontalStackLayout
                                     VerticalOptions="CenterAndExpand"
-                                    Margin="10,0,0,0"
+                                    Margin="0,0,0,0"
                                 Grid.Column="0">
-                                    <Label 
-                                        FontSize="14">
-                                        <Label.Text>
-                                            <MultiBinding StringFormat="Name: {0} {1}">
-                                                <Binding Path="FirstName" />
-                                                <Binding Path="LastName" />
-                                            </MultiBinding>
-                                        </Label.Text>
-                                    </Label>
-                                </StackLayout>
+                                    <Border HeightRequest="55"
+                                        Margin="0,0,10,0"
+                                        WidthRequest="55"
+                                        StrokeShape="RoundRectangle 70"
+                                        StrokeThickness="3"
+                                        HorizontalOptions="Center"
+                                        Padding="0">
+                                        <Label
+                                            Text="{Binding Initials}"
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            FontSize="20"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource Primary}"/>
+                                    </Border>
+                                    <VerticalStackLayout
+                                        VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Name}" FontSize="14" />
+                                        <StackLayout IsVisible="{Binding IsExpanded}">
+                                            <Label Text="{Binding Street}" FontSize="14" />
+                                            <Label Text="{Binding Address}" FontSize="14" />
+                                            <Label Text="{Binding Email}" FontSize="14" />
+                                            <Label Text="{Binding Phone}" FontSize="14" />
+                                        </StackLayout>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
                                 <Button
+                                    VerticalOptions="Center"
+                                    Margin="0,0,0,0"
+                                    Padding="0,0,0,0"
                                     Grid.Column="1"
                                     Text="Edit"
                                     CommandParameter="{Binding .}"
                                     Command="{Binding Path=EditContactCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}"/>
                                 <Button
+                                    VerticalOptions="Center"
                                     Grid.Column="2"
-                                    Text="Delete"
+                                    Text="X"
                                     CommandParameter="{Binding .}"
                                     Command="{Binding Path=DeleteContactCommand, Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}"/>
                             </Grid>
